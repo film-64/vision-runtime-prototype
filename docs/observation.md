@@ -83,9 +83,11 @@ new evidence updates carried information
 
 This is an explanation of staged evidence acquisition, not a claim that the repository contains a universal cost optimizer.
 
-## Information-support geometry
+## Information-Support Geometry
 
-Detector rectangles are observations, not automatically a model of scene structure. The later Observation work therefore separates support topology, geometry dimension, spatial-partition occupancy and evidence maturity. A limited public description is in [information-support geometry](information-support-geometry.md).
+Observation also needs a way to carry spatial evidence without treating every model output as permanent scene truth. The public ISG description therefore stays at the evidence level: observed regions, evidence-backed supports, spatial relations and coverage, provenance, freshness, uncertainty, and evidence maturity.
+
+The mathematical construction of those supports, the rejection/counterexample set used while forming the model, and the detailed acceptance rules are intentionally not published. See [information-support geometry](information-support-geometry.md) for the limited public abstraction.
 
 ## Why text becomes a harder example
 
