@@ -2,7 +2,7 @@
 
 A curated, evidence-backed extraction of runtime-control and selected Observation mechanisms from a larger private visual-perception development repository.
 
-This repository is a job-application showcase. It is intentionally narrower than the original system: it demonstrates runtime control behavior, architecture boundaries, selected Observation contracts, tests, and historical execution evidence without redistributing private media, model weights, face data, or the complete research history.
+This repository is a job-application showcase. It is intentionally narrower than the original system: it demonstrates runtime control behavior, architecture boundaries, selected Observation contracts, tests, and bounded execution evidence without redistributing private media, model weights, face data, or the complete research history.
 
 ## Scope
 
@@ -60,15 +60,22 @@ vision_runtime/
     evidence.py              evidence provenance, versioning, freshness, history
     information_state.py     carried information linked to explicit evidence
 
+dynamic_pipeline/core/      narrow metadata evidence contracts and storage helpers
+roi_app/                     extracted async commit/package/replay path used by evidence
+scripts/generate_public_evidence.py
+                             deterministic synthetic E2E evidence harness
+
 tests/                       synthetic, model-free contract tests
 config/                      representative sanitized runtime policy excerpt
 docs/runtime-architecture.md
 docs/observation.md
 docs/information-support-geometry.md
 docs/research-boundary.md
-docs/evidence/               sanitized summaries of historical measured runs
+docs/evidence/               historical summaries + current synthetic verification
 examples/                    small model-free demonstrations
 ```
+
+`dynamic_pipeline/` and `roi_app/` are not a publication of the full source application. They contain only the real metadata projection/commit/package/archive/replay support required for the public synthetic E2E path. Scheduler/task internals, model-specific Pose/OCR helpers, UI replay behavior, migration adapters, and unrelated source-application utilities are intentionally excluded.
 
 ## Lightweight verification
 
@@ -85,6 +92,14 @@ python examples/observation_contract_demo.py
 
 Passing these commands verifies the curated public slice, not the original detector/OCR/model environment.
 
+The current synthetic metadata chain can also be regenerated without private media or model weights:
+
+```bash
+python scripts/generate_public_evidence.py --output-dir /tmp/public-metadata-evidence
+```
+
+That path uses deterministic synthetic input, the extracted runtime projection, bounded asynchronous metadata commit, package/index/archive creation, the existing package verifier, and `ReplayRuntime`. GitHub Actions reruns the same path and uploads an artifact named with the commit SHA.
+
 ## Historical execution evidence
 
 The source repository archived dated experiments with explicit environment and timing boundaries. This showcase carries sanitized summaries rather than raw media, model artifacts, machine-local paths, or historical experiment directories.
@@ -96,8 +111,9 @@ The source repository archived dated experiments with explicit environment and t
 | [YOLOE26 fused/local path](docs/evidence/yoloe26-fused-local.md) | measured fused-vs-dynamic and dense-vs-coordinate-local execution |
 | [Motion-selected region person detection](docs/evidence/motion-selected-region-person.md) | cheap CV evidence selecting a smaller region before person-detector computation |
 | [Temporal spatial reuse](docs/evidence/temporal-spatial-reuse.md) | sparse validation and event-driven rebuild versus eager per-frame spatial processing |
+| [Current synthetic metadata E2E](docs/evidence/current-synthetic-metadata-e2e/README.md) | current model-free projection/commit/package/verify/replay chain; not a model benchmark |
 
-These are historical validation snapshots, not current performance guarantees.
+Historical benchmark summaries are validation snapshots, not current performance guarantees. The synthetic E2E package is current verification of the extracted metadata path and is explicitly not a real-model result.
 
 ## Provenance
 
@@ -107,7 +123,7 @@ The runtime-control slice was curated from `film-64/Vision-product`, branch `yol
 
 The selected Observation contracts and later validation summaries were curated from subsequent `gate-tool-2` work. The private source repository contains substantially more application code, local assets, experiments, research notes and unfinished development than this showcase.
 
-Development was agent-assisted. The working loop was requirements and observed behavior -> agent implementation -> run/test/profile -> mismatch or failure -> requirement refinement -> repeat. Agents also assisted with implementation, testing, documentation and research organization. The repository is intended to show the resulting engineering artifacts and verification boundaries rather than imply that every implementation detail was authored without tooling assistance.
+Development was agent-assisted and implementation-led. A common loop was rough capability hypothesis -> agent-assisted runnable implementation -> run/test/profile -> mismatch or new boundary -> requirement or ownership refinement -> repeat. The earlier runtime accumulated migration and exploration residue through that process. Later Observation work added more explicit separation between current design, historical exploration, validation evidence, and still-open concepts. The public repository presents converged slices and bounded evidence rather than reproducing every exploratory implementation or implying unaided authorship of every implementation detail.
 
 ## What is intentionally not included
 
@@ -115,6 +131,7 @@ Development was agent-assisted. The working loop was requirements and observed b
 - private/original media and decoded frame caches;
 - face databases or identity material;
 - machine-local configuration and absolute paths;
+- the complete source application's scheduler/task/model/UI implementation;
 - the complete Observation / Attention research path, literature map and internal handoff documents;
 - unpublished OCR evidence-construction and activation strategy;
 - future Observation research roadmap;
