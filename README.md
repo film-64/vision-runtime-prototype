@@ -71,7 +71,7 @@ docs/runtime-architecture.md
 docs/observation.md
 docs/information-support-geometry.md
 docs/research-boundary.md
-docs/evidence/               historical summaries + current synthetic verification
+docs/evidence/               historical summaries + a frozen synthetic package snapshot
 examples/                    small model-free demonstrations
 ```
 
@@ -98,7 +98,7 @@ The current synthetic metadata chain can also be regenerated without private med
 python scripts/generate_public_evidence.py --output-dir /tmp/public-metadata-evidence
 ```
 
-That path uses deterministic synthetic input, the extracted runtime projection, bounded asynchronous metadata commit, package/index/archive creation, the existing package verifier, and `ReplayRuntime`. GitHub Actions reruns the same path and uploads an artifact named with the commit SHA.
+That path uses deterministic synthetic input, the extracted runtime projection, bounded asynchronous metadata commit, package/index/archive creation, the existing package verifier, and `ReplayRuntime`. GitHub Actions reruns the same path and uploads an artifact named with the commit SHA. The checked-in evidence directory is a frozen browsable snapshot; the commit-scoped Actions artifact is the authoritative current execution record.
 
 ## Historical execution evidence
 
@@ -111,9 +111,9 @@ The source repository archived dated experiments with explicit environment and t
 | [YOLOE26 fused/local path](docs/evidence/yoloe26-fused-local.md) | measured fused-vs-dynamic and dense-vs-coordinate-local execution |
 | [Motion-selected region person detection](docs/evidence/motion-selected-region-person.md) | cheap CV evidence selecting a smaller region before person-detector computation |
 | [Temporal spatial reuse](docs/evidence/temporal-spatial-reuse.md) | sparse validation and event-driven rebuild versus eager per-frame spatial processing |
-| [Current synthetic metadata E2E](docs/evidence/current-synthetic-metadata-e2e/README.md) | current model-free projection/commit/package/verify/replay chain; not a model benchmark |
+| [Synthetic metadata E2E snapshot](docs/evidence/current-synthetic-metadata-e2e/README.md) | browsable package shape; current per-commit projection/commit/package/verify/replay result is produced by Actions |
 
-Historical benchmark summaries are validation snapshots, not current performance guarantees. The synthetic E2E package is current verification of the extracted metadata path and is explicitly not a real-model result.
+Historical benchmark summaries are validation snapshots, not current performance guarantees. The synthetic E2E run is current model-free verification of the extracted metadata path and is explicitly not a real-model result; current provenance is carried by the commit-scoped Actions artifact.
 
 ## Provenance
 
