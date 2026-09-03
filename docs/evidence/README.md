@@ -13,6 +13,7 @@ These were curated from the earlier `yoloe26-smoke` runtime baseline.
 ## Observation-related evidence
 
 - [Motion-selected region for person detection](motion-selected-region-person.md)
+  - [Machine-readable result](artifacts/motion-selected-region-person-result.json)
 - [Temporal spatial reuse validation](temporal-spatial-reuse.md)
 
 These later bounded validations were recorded on `gate-tool-2`. They are included because they demonstrate two narrow Observation questions with measured evidence: where stronger computation can be focused, and when previously acquired spatial state can be reused instead of rebuilt.
