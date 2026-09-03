@@ -24,3 +24,5 @@ jobs:
         run: pytest -q
       - name: Run control-core demo
         run: python examples/runtime_control_demo.py
+      - name: Run Observation contract demo
+        run: python examples/observation_contract_demo.py
