@@ -1,0 +1,69 @@
+{
+  "schema": "motion_cross_region_person_detection_public_result_v1",
+  "status": "bounded_offline_feasibility",
+  "recorded_date": "2026-09-02",
+  "frames": {
+    "decoded_in_memory": 15,
+    "measured": 14,
+    "source_frame_step": 3
+  },
+  "detector": {
+    "class_count": 1,
+    "class_name": "person",
+    "keypoint_head_executed": false,
+    "confidence": 0.25,
+    "nms_iou": 0.6,
+    "torch_threads": 1
+  },
+  "selection": {
+    "motion_window": 3,
+    "coverage_threshold": 0.985,
+    "support_dilation_px": 15
+  },
+  "result": {
+    "full_person_boxes": 48,
+    "regional_person_boxes": 64,
+    "retained_at_iou_0_5": 48,
+    "retention": 1.0,
+    "mapped_iou_mean": 0.9488341868,
+    "mapped_iou_min": 0.8668577233,
+    "mean_purchased_active_area_ratio": 0.6193452381,
+    "full_fallback_frames": 2,
+    "full_ms": {
+      "mean": 216.1727,
+      "p50": 217.1164,
+      "p95": 221.6548
+    },
+    "regional_detector_ms": {
+      "mean": 99.5043,
+      "p50": 99.723,
+      "p95": 138.0385
+    },
+    "selection_ms": {
+      "mean": 28.9321,
+      "p50": 26.8007,
+      "p95": 39.1477
+    },
+    "regional_complete_ms": {
+      "mean": 128.4364,
+      "p50": 131.811,
+      "p95": 165.7788
+    },
+    "complete_p50_reduction_ratio": 0.3929
+  },
+  "claim": "Feasible in this bounded window: all model-derived full-frame person boxes were retained while complete-path p50 fell by 39.3%.",
+  "claims_not_made": [
+    "human_labeled_precision",
+    "production_thresholds",
+    "production_runtime_policy",
+    "selection_stage_is_optimized"
+  ],
+  "excluded_artifacts": [
+    "source_video",
+    "decoded_cache",
+    "frame_images",
+    "model_weights",
+    "private_commit_identifiers"
+  ],
+  "publication_note": "Sanitized machine-readable extraction of the committed historical result. Original media and private repository provenance are intentionally not redistributed."
+}
