@@ -1,0 +1,5 @@
+{"source_record_id":"202609031353_10000_current_synthetic_verification:patch:synthetic_patch_color_alpha","ref_type":"patch_ref","ref_value":"synthetic_patch_color_alpha","target_record_id":null,"status":"unresolved","metadata":{}}
+{"source_record_id":"202609031353_10000_current_synthetic_verification:patch:synthetic_patch_color_alpha","ref_type":"hook_ref_id","ref_value":"synthetic_hook_alpha","target_record_id":null,"status":"unresolved","metadata":{}}
+{"source_record_id":"202609031353_10000_current_synthetic_verification:patch:synthetic_patch_color_alpha","ref_type":"public_artifact_ref","ref_value":"synthetic_artifact_alpha","target_record_id":null,"status":"unresolved","metadata":{}}
+{"source_record_id":"202609031353_10000_current_synthetic_verification:patch:synthetic_patch_color_beta","ref_type":"patch_ref","ref_value":"synthetic_patch_color_beta","target_record_id":null,"status":"unresolved","metadata":{}}
+{"source_record_id":"202609031353_10000_current_synthetic_verification:patch:synthetic_patch_color_beta","ref_type":"memory_ref","ref_value":"synthetic_memory_beta","target_record_id":null,"status":"unresolved","metadata":{}}

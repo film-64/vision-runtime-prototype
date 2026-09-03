@@ -1,0 +1,48 @@
+{
+  "evidence_kind": "current_synthetic_verification",
+  "frame_count": 3,
+  "frame_ids": [
+    1,
+    2,
+    3
+  ],
+  "loaded": true,
+  "model_inference_performed": false,
+  "object_count": 4,
+  "objects_by_frame": [
+    {
+      "display_labels": [
+        "synthetic_red_block"
+      ],
+      "frame_id": 1,
+      "object_ids": [
+        "synthetic_object_f001_1"
+      ]
+    },
+    {
+      "display_labels": [
+        "synthetic_red_block",
+        "synthetic_blue_block"
+      ],
+      "frame_id": 2,
+      "object_ids": [
+        "synthetic_object_f002_1",
+        "synthetic_object_f002_2"
+      ]
+    },
+    {
+      "display_labels": [
+        "synthetic_blue_block"
+      ],
+      "frame_id": 3,
+      "object_ids": [
+        "synthetic_object_f003_1"
+      ]
+    }
+  ],
+  "runtime_class": "roi_app.replay_runtime.ReplayRuntime",
+  "status_messages": [
+    "Replay loaded: 202609031353_10000_current_synthetic_verification frames=3"
+  ],
+  "synthetic": true
+}

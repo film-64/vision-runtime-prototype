@@ -1,0 +1,31 @@
+{
+  "counts": {
+    "index_by_frame": 9,
+    "index_by_hook_ref": 1,
+    "index_by_memory_ref": 1,
+    "index_by_object": 6,
+    "index_by_time": 9,
+    "index_by_track": 6,
+    "metadata_bad_jsonl_lines": 0,
+    "metadata_frames": 3,
+    "metadata_objects": 4,
+    "metadata_patches": 2,
+    "metadata_records": 9,
+    "refs": 5
+  },
+  "errors": [],
+  "hashes": {
+    "archive_link_hash": "sha256:e28b610d143f52027690cd94dab6e89bbb081684cdfb52a7a4d6b806be74fbd5",
+    "manifest_hash": "sha256:cc0fc532c5ad16ecac7396aabbbc783292ddcf970441ddc98d10d6bd3db196e9",
+    "metadata_hash": "sha256:7586cc4210ddb04d392262078faac08529654fed5f2003bd903af26858909de8",
+    "paste_rules_hash": "sha256:4e3c03db0efba26d323f1138f41f333022efdc66bce6f7f8e622d6908233c7a0",
+    "refs_hash": "sha256:43b02104b3a7ba55cc78ee9e5c4b2301a612ce5f34da57ed121fc55be54756b6",
+    "source_fingerprint_hash": "sha256:6f776a9b4920040eea43b48ccf7a67659bf41448008bffc9a3cc837bd9b06d72",
+    "source_hash": "sha256:71079bd7460749c8973fea3413c62e7020d3e76264ba93444bc391f2acd331d8",
+    "source_hash_computed": "sha256:71079bd7460749c8973fea3413c62e7020d3e76264ba93444bc391f2acd331d8"
+  },
+  "ok": true,
+  "package_id": "202609031353_10000_current_synthetic_verification",
+  "package_root": "packages/202609031353_10000_current_synthetic_verification",
+  "warnings": []
+}

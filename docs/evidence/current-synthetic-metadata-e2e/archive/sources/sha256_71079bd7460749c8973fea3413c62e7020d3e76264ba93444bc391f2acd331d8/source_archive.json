@@ -1,0 +1,11 @@
+{
+  "event_count": 1,
+  "first_event_id": 10000,
+  "first_seen_at_ms": 1788443588035,
+  "last_seen_at_ms": 1788443588077,
+  "latest_event_id": 10000,
+  "latest_package_id": "202609031353_10000_current_synthetic_verification",
+  "schema_version": "source_archive.v1",
+  "source_hash": "sha256:71079bd7460749c8973fea3413c62e7020d3e76264ba93444bc391f2acd331d8",
+  "source_kind": "synthetic_ppm"
+}

@@ -1,0 +1,16 @@
+{
+  "created_at_ms": 1788443588034,
+  "latest_by_source_hash": {
+    "sha256:71079bd7460749c8973fea3413c62e7020d3e76264ba93444bc391f2acd331d8": {
+      "event_count": 1,
+      "latest_event_id": 10000,
+      "latest_package_id": "202609031353_10000_current_synthetic_verification",
+      "latest_package_path": "packages/202609031353_10000_current_synthetic_verification",
+      "source_hash": "sha256:71079bd7460749c8973fea3413c62e7020d3e76264ba93444bc391f2acd331d8",
+      "updated_at_ms": 1788443588080
+    }
+  },
+  "next_event_id": 10001,
+  "schema_version": "metadata_archive_registry.v2",
+  "updated_at_ms": 1788443588080
+}

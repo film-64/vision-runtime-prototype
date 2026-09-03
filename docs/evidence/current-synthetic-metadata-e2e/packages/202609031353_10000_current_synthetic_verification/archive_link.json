@@ -1,0 +1,9 @@
+{
+  "event_id": 10000,
+  "is_latest_for_source": true,
+  "linked_at_ms": 1788443588077,
+  "package_id": "202609031353_10000_current_synthetic_verification",
+  "schema_version": "package_archive_link.v1",
+  "source_archive_path": "archive/sources/sha256_71079bd7460749c8973fea3413c62e7020d3e76264ba93444bc391f2acd331d8/source_archive.json",
+  "source_hash": "sha256:71079bd7460749c8973fea3413c62e7020d3e76264ba93444bc391f2acd331d8"
+}

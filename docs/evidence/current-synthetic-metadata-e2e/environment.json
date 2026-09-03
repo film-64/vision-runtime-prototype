@@ -1,0 +1,32 @@
+{
+  "evidence_kind": "current_synthetic_verification",
+  "git": {
+    "branch": "主要",
+    "changed_paths_omitted": true,
+    "head": "965f0c1c83b7397991892b944b112e6708bbc6ab",
+    "worktree_clean": false
+  },
+  "implementation_sha256": {
+    "dynamic_pipeline/core/metadata_jsonl.py": "15d14e823ae156ac291b1be53939f537e5e72e2211979c0276495b0f93c18dae",
+    "dynamic_pipeline/core/package_verify.py": "a1beeb9e03581af72d422becf0b551314835362403c952a24d2fd619bd865d7e",
+    "dynamic_pipeline/core/runtime_projection.py": "76ab9c02559ae2282f2c8db6d3b7d44fdf50064ca124d23ce6c4dc98f1a8b57d",
+    "dynamic_pipeline/core/source_archive.py": "93113280b61436d19c7712e2b9d273a1a808fc42ce7af5445bef0ff03d6aa88f",
+    "roi_app/metadata_committer.py": "a08987c3e64a3900a2d3b460d78ea9060cf109c2f56898bbc7d27c8498d86a37",
+    "roi_app/metadata_package_manager.py": "590846be0f3c1e5c49ff2bb50f835c5fe12af1001c4e4cce407b08d43939f81f",
+    "roi_app/replay_runtime.py": "44dfbcaf88833570c04a45adfa6a7a0e63e4e59212b63d48f3615f138f90194a",
+    "scripts/generate_public_evidence.py": "306337c1a1891cb0cef32f691a683032ab79e7c5b285c4a06ec80eff5b6d21dd"
+  },
+  "packages": {
+    "Pillow": "11.3.0",
+    "PyYAML": "6.0.3",
+    "numpy": "2.2.6",
+    "pytest": "9.1.0",
+    "vision-product": null
+  },
+  "platform": "macOS-14.7.1-x86_64-i386-64bit",
+  "python": {
+    "implementation": "CPython",
+    "version": "3.10.5"
+  },
+  "synthetic": true
+}

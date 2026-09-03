@@ -1,0 +1,36 @@
+{
+  "archive_link_timing": "post_close_idle",
+  "archive_managed": true,
+  "contains_raw_payload": false,
+  "contains_scheduler_trace": false,
+  "created_at_ms": 1788443588035,
+  "display_name": "202609031353_10000_current_synthetic_verification",
+  "event_id": 10000,
+  "index_files": {
+    "by_frame": "indexes/by_frame.jsonl",
+    "by_hook_ref": "indexes/by_hook_ref.jsonl",
+    "by_memory_ref": "indexes/by_memory_ref.jsonl",
+    "by_object": "indexes/by_object.jsonl",
+    "by_time": "indexes/by_time.jsonl",
+    "by_track": "indexes/by_track.jsonl"
+  },
+  "metadata_file": "metadata.jsonl",
+  "metadata_landing_mode": "offline_only",
+  "package_id": "202609031353_10000_current_synthetic_verification",
+  "package_state": "closed",
+  "paste_rules_file": "paste_rules.yaml",
+  "recording_id": "202609031353_10000_current_synthetic_verification",
+  "refs_file": "refs.jsonl",
+  "root_kind": "local_metadata_package",
+  "schema_version": "metadata_package.v1",
+  "sidecar_policy": {
+    "auto_delete_metadata": false,
+    "auto_delete_sidecars": false,
+    "default_retention": "never_delete",
+    "keep_sync_checkpoints": true,
+    "require_explicit_delete": true
+  },
+  "source_id": "public_synthetic_source",
+  "source_mode": "Offline",
+  "updated_at_ms": 1788443588073
+}

@@ -1,0 +1,16 @@
+{
+  "duration_ms": null,
+  "file_size_bytes": 18445,
+  "fps": null,
+  "frame_count": null,
+  "hash_algorithm": "sha256",
+  "hash_completed_at_ms": 1788443588075,
+  "height": null,
+  "mtime_ms": 1788443588033,
+  "schema_version": "source_fingerprint.v1",
+  "source_hash": "sha256:71079bd7460749c8973fea3413c62e7020d3e76264ba93444bc391f2acd331d8",
+  "source_kind": "synthetic_ppm",
+  "video_probe_reason": null,
+  "video_probe_status": null,
+  "width": null
+}

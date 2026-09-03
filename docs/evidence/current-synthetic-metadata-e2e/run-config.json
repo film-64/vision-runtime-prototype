@@ -1,0 +1,50 @@
+{
+  "evidence_kind": "current_synthetic_verification",
+  "expected": {
+    "bad_jsonl_lines": 0,
+    "frame_count": 3,
+    "object_count": 4,
+    "record_count": 9
+  },
+  "generator": "scripts/generate_public_evidence.py",
+  "harness_only_paths": [
+    "scripts/generate_public_evidence.py"
+  ],
+  "historical_video_used": false,
+  "model_inference_performed": false,
+  "observed": {
+    "committer_records_written": 9,
+    "reader_frame_count": 3,
+    "reader_object_count": 4,
+    "reader_records_read": 9
+  },
+  "package": {
+    "event_id": 10000,
+    "metadata_landing_mode": "offline_only",
+    "package_id": "202609031353_10000_current_synthetic_verification",
+    "relative_path": "packages/202609031353_10000_current_synthetic_verification",
+    "source_mode": "Offline"
+  },
+  "private_media_used": false,
+  "private_model_weights_used": false,
+  "real_project_code_paths": [
+    "roi_app/metadata_package_manager.py",
+    "roi_app/metadata_committer.py",
+    "dynamic_pipeline/core/runtime_projection.py",
+    "dynamic_pipeline/core/metadata_jsonl.py",
+    "dynamic_pipeline/core/package_verify.py",
+    "dynamic_pipeline/core/source_archive.py",
+    "roi_app/replay_runtime.py"
+  ],
+  "rerun_command": "python scripts/generate_public_evidence.py",
+  "source": {
+    "format": "binary PPM (P6)",
+    "generation": "deterministic coordinate-derived RGB values; no random or external input",
+    "height": 64,
+    "relative_path": "synthetic-input.ppm",
+    "sha256": "71079bd7460749c8973fea3413c62e7020d3e76264ba93444bc391f2acd331d8",
+    "width": 96
+  },
+  "synthetic": true,
+  "title": "Current synthetic metadata end-to-end verification"
+}

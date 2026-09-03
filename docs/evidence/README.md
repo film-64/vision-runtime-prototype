@@ -1,5 +1,12 @@
 # Historical execution evidence
 
+## Current reproducible evidence
+
+- [Synthetic metadata end-to-end verification](current-synthetic-metadata-e2e/README.md)
+  - Deterministically generates a public synthetic input and runs the repository's metadata package manager,
+    metadata committer, indexes, source archive, package verifier, and ReplayRuntime.
+  - This is current synthetic verification, not a real-model or historical-video result.
+
 These pages are sanitized summaries of dated validation archives from the source repository. They preserve the engineering claim and measurement boundary without redistributing original media, model weights, generated checkpoints, raw machine paths, or the private research history.
 
 ## Runtime-control baseline evidence

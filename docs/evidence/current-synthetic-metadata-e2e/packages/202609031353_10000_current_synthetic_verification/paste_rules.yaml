@@ -1,0 +1,53 @@
+schema_version: paste_rules.v1
+package_id: 202609031353_10000_current_synthetic_verification
+views:
+  frame_timeline:
+    source: metadata
+    group_by: frame_id
+    order_by: timestamp_ms
+    attach:
+    - objects
+    - display_summary
+    - hook_refs
+  track_timeline:
+    source: metadata
+    group_by: track_id
+    order_by: timestamp_ms
+    attach:
+    - object_observations
+    - accepted_patches
+    - hook_refs
+    - memory_refs
+  object_card:
+    source: metadata
+    key: object_id
+    attach:
+    - latest_display_summary
+    - verified_summary
+    - unresolved_refs
+  aggregate_overview:
+    source: metadata
+    group_by: source_frame_index
+    order_by: source_frame_index
+    attach:
+    - layers
+    - fusion_groups
+    - coverage_summary
+ref_resolution:
+  hook_ref:
+    required: false
+    missing_behavior: unresolved_marker
+    search:
+    - refs.jsonl
+    - indexes/by_hook_ref.jsonl
+    - sidecars/
+  sidecar_ref:
+    required: false
+    missing_behavior: placeholder
+  memory_ref:
+    required: false
+    missing_behavior: pending_recall
+redaction:
+  default: portable
+  include_scheduler_trace: false
+  include_raw_payload: false
