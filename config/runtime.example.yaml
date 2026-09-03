@@ -1,0 +1,51 @@
+# Representative, sanitized subset of the yoloe26-smoke runtime policy.
+# This file documents the public showcase boundary; it is not the complete
+# historical application configuration.
+
+runtime_clock:
+  target_display_fps: 30
+  target_tracker_fps: 30
+  target_detector_fps: auto
+  detector_max_inflight: 1
+  keep_latest_frame_only: true
+  skip_detector_if_busy: true
+
+admission:
+  enabled: true
+  use_p95_latency: true
+  utility_cost_ranking: true
+  replace_pending_same_track_bucket: true
+  drop_over_budget: true
+
+scheduler:
+  coarse_main_heartbeat_limit: 20
+  pose_face_not_visible_frames_to_pause: 1
+  pose_face_visible_frames_to_resume: 1
+
+runtime_load_control:
+  enabled: true
+  target_utilization: 0.72
+  ramp_up_frames: 3
+  pressure_queue_ms_ratio: 1.25
+  min_worker_budget_intervals: 1
+  max_worker_budget_intervals: auto
+  worker_budget_intervals: auto
+  preserve_identity: true
+
+executor:
+  mode: multi_thread
+  enable_execution_lanes: true
+  merge_policy: serial
+  default_concurrency_policy: keyed
+  lanes:
+    high: {enabled: true, workers: 1}
+    normal: {enabled: true, workers: 1}
+    low: {enabled: true, workers: 1}
+
+metrics_jitter_filter:
+  enabled: true
+  warmup_samples: 3
+  min_baseline_samples: 12
+  spike_multiplier: 2.5
+  spike_floor_ms: 120
+  max_consecutive_drops: 3
