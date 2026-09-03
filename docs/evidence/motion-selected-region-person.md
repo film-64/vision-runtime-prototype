@@ -20,7 +20,7 @@ This bounded offline feasibility test asked whether short frame history and low-
 - confidence 0.25, NMS IoU 0.6
 - full-frame boxes from the same model were the reference; they were not human-labeled ground truth
 
-The source video, decoded frames and model weights are not redistributed here.
+The source video, decoded frames and model weights are not redistributed here. A sanitized machine-readable result is included at [`artifacts/motion-selected-region-person-result.json`](artifacts/motion-selected-region-person-result.json); private commit identifiers and original media provenance are intentionally omitted from that public artifact.
 
 ## Recorded result
 
