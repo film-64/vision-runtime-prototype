@@ -7,8 +7,7 @@ It does **not** document the underlying research path.
 The following are intentionally outside the public scope:
 
 - literature-mapping and cross-domain reference trails;
-- the sequence in which hypotheses were proposed, rejected or reformulated;
-- mathematical model-construction notes, rejected formulations and counterexample sets;
+- internal mathematical construction and derivation material;
 - internal research notes and handoff documents;
 - prompt history or agent reasoning traces;
 - unpublished OCR evidence-construction and activation policy;
@@ -29,8 +28,7 @@ public
 not public
   research route
   literature map
-  mathematical construction path
-  hypothesis evolution
+  internal model construction
   future acquisition strategy
   internal roadmap
 ```
