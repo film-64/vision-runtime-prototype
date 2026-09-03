@@ -26,6 +26,10 @@ The project is not centered on a single detector or a single product form. Its l
 
 The same substrate could support multiple product forms, from wearable or local-monitoring use to visual search, recognition, and longer-lived personal context, without treating each use case as a completely separate perception stack.
 
+> **You need an Observation center, not attention everywhere. Attention is finite.**
+
+The system should not attempt to fully perceive everything at all times. It should maintain a durable account of what is already known and use limited attention to decide where additional observation is worth spending.
+
 The source project accumulated many experimental requirements and capabilities while keeping a temporarily stable runtime underneath them. New work was implemented, measured, narrowed, consolidated, or recombined as the shared constraints became clearer. The current architecture is therefore the result of iterative convergence rather than a single top-down design.
 
 ## System context
@@ -107,6 +111,8 @@ This repository demonstrates two narrow forms of that question:
 Where is additional visual computation worth spending?
 When is previously acquired information no longer safe to reuse?
 ```
+
+Observation is broader than attention. Attention is a bounded selection mechanism for scarce sensing and compute opportunities; Observation is the shared information substrate that lets the rest of the system distinguish what is known, unknown, stale, weakly supported, or worth reacquiring. The architecture does not require every capability to become “attention”; it requires attention and other policies to operate against a common Observation center.
 
 In the larger architecture, Observation is the current convergence point of the earlier runtime exploration. It is not intended as another post-processing specialist. It is a protected pre-semantic substrate for maintaining reusable visual information, supporting evidence, maintenance rules, and internal observation compute before ordinary semantic model work is admitted.
 
