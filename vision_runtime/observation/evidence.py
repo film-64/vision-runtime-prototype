@@ -10,7 +10,7 @@ models.
 from dataclasses import dataclass
 from enum import Enum
 from math import isfinite
-from typing import Any, Iterable
+from typing import Any, Iterable, Mapping
 
 
 class ObservationContractError(ValueError):
@@ -25,6 +25,27 @@ class EvidenceScope(str, Enum):
     HUMAN_PRESENCE = "human.presence"
     TEXT_PRESENCE = "text.presence"
     RECOGNIZED_TEXT = "text.recognized"
+
+
+_IMMUTABLE_VALUE_TYPES = (type(None), bool, int, float, str, bytes)
+
+
+def _freeze_value(value: Any) -> Any:
+    if isinstance(value, _IMMUTABLE_VALUE_TYPES):
+        if isinstance(value, float) and not isfinite(value):
+            raise ObservationContractError("evidence float values must be finite")
+        return value
+    if isinstance(value, Enum):
+        return value.value
+    if isinstance(value, Mapping):
+        return tuple(sorted((str(key), _freeze_value(item)) for key, item in value.items()))
+    if isinstance(value, (tuple, list)):
+        return tuple(_freeze_value(item) for item in value)
+    if isinstance(value, (set, frozenset)):
+        return frozenset(_freeze_value(item) for item in value)
+    raise ObservationContractError(
+        f"unsupported mutable/opaque evidence value type: {type(value).__name__}"
+    )
 
 
 @dataclass(frozen=True)
@@ -89,6 +110,7 @@ class Evidence:
             raise ObservationContractError("uncertainty must be finite and >= 0")
         if self.valid_until_frame_id is not None and self.valid_until_frame_id < self.frame_ref.frame_id:
             raise ObservationContractError("valid_until_frame_id cannot precede produced frame")
+        object.__setattr__(self, "value", _freeze_value(self.value))
 
     @property
     def ref(self) -> EvidenceRef:
