@@ -2,11 +2,11 @@
 
 A curated, evidence-backed extraction of runtime-control and selected Observation mechanisms from a larger private visual-perception development repository.
 
-This repository is a job-application showcase. It is intentionally narrower than the original system: it demonstrates runtime control behavior, architecture boundaries, selected Observation contracts, tests, and bounded execution evidence without redistributing private media, model weights, face data, or the complete research history.
+This repository is a job-application showcase. It is intentionally narrower than the original system: it demonstrates runtime control behavior, architecture boundaries, selected Observation contracts, tests, and bounded execution evidence without redistributing private media, model weights, identity data, or the complete research history.
 
 ## Scope
 
-The extracted control core keeps four behaviors from the `yoloe26-smoke` runtime baseline:
+The extracted control core keeps four behaviors from the 26-era runtime baseline:
 
 - latency/queue/runtime metrics;
 - detector-index time semantics and stale-work rejection;
@@ -18,41 +18,26 @@ A later public Observation slice adds two small contracts:
 - versioned evidence with source/generation provenance, freshness and historical visibility;
 - carried information state that explicitly points back to the evidence supporting it.
 
-The original runtime was much broader. It connected frame input, detector/pose/tracking perception, capability/artifact DAG work, scheduling/admission, specialist execution, persistent state, metadata, replay, and higher-level control. The public extraction is a runnable projection of selected mechanisms, not a miniature copy of the complete private application.
+The original runtime was much broader. It connected frame input, multiple perception capabilities, graph-defined work, scheduling/admission, execution, persistent state, metadata, replay, and higher-level control. The public extraction is a runnable projection of selected mechanisms, not a miniature copy of the complete private application.
 
 ## Long-term motivation
 
 The project is not centered on a single detector or a single product form. Its long-term motivation is a persistent visual companion: a system that can remain present over time, selectively observe its surroundings, maintain useful state, acquire stronger evidence when necessary, and reuse what it already knows instead of recomputing the world from scratch.
 
-That substrate could support very different product forms — wearable assistance, local security, visual search and recognition, or personal daily records — without treating each one as a completely separate perception stack.
+The same substrate could support multiple product forms, from wearable or local-monitoring use to visual search, recognition, and longer-lived personal context, without treating each use case as a completely separate perception stack.
 
-The source project therefore accumulated many experimental requirements and capabilities. They were not all intended to survive unchanged. A common development pattern was:
-
-```text
-temporarily stable runtime substrate
-        -> new capability / requirement
-        -> runnable implementation
-        -> run / profile / inspect
-        -> exposed boundary or collision
-        -> narrow / rename / re-own / remove
-        -> deeper recombination
-        -> next temporarily stable substrate
-```
-
-This repository does not present that history as a clean top-down product architecture. The implementation grew through exploration, and later work increasingly consolidated the shared problems behind that growth.
+The source project accumulated many experimental requirements and capabilities while keeping a temporarily stable runtime underneath them. New work was implemented, measured, narrowed, consolidated, or recombined as the shared constraints became clearer. The current architecture is therefore the result of iterative convergence rather than a single top-down design.
 
 ## System context
 
-The larger private project explores runtime infrastructure around continuous visual inference rather than a conventional model wrapper. Its architecture combines higher-level goals, static graph-defined perception requirements, a protected Observation substrate, runtime specialization, admission and scheduling, heterogeneous perception capabilities, learned execution feedback, and persistent state.
+The larger private project explores runtime infrastructure around continuous visual inference rather than a conventional model wrapper. At a high level it combines higher-level control, graph-defined perception requirements, a protected Observation substrate, runtime specialization, admission and scheduling, heterogeneous perception capabilities, adaptive execution feedback, and persistent state.
 
-Architecture maturity is intentionally uneven. The following diagram is system context, not a claim that every control loop is complete or equally mature:
+The diagram below shows system context. The public repository implements only selected slices of it:
 
 ```text
-                 Agent / goal control
+                 Higher-level control
                          |
-                 Static DAG authoring
-                         |
-                observation requirements
+                graph-defined requirements
                          |
                          v
 Frame ------------> OBSERVATION <------------- semantic feedback
@@ -67,10 +52,9 @@ Frame ------------> OBSERVATION <------------- semantic feedback
           +----------------------------------+
           | capacity / load                  |
           | cadence / stale-work rejection   |
-          | cost / utility estimates         |
-          | guarded learning                 |
-          | spatial / semantic reuse         |
-          | admission                        |
+          | cost-aware admission             |
+          | guarded adaptation               |
+          | contextual reuse                 |
           +----------------+-----------------+
                            |
                            v
@@ -92,9 +76,9 @@ Frame ------------> OBSERVATION <------------- semantic feedback
 
 The important distinction is that the system is not only deciding *which model to run*. Much of the 26-era exploration asked whether a general perception capability could be narrowed according to current runtime context: spatially, semantically, temporally, or computationally. Historical OCR, sparse Pose, temporal-reuse and YOLOE experiments in this repository are bounded examples of that direction rather than claims of a finished universal optimization layer.
 
-In the current private runtime, scheduling is more than FIFO dispatch. Existing runtime state and load control constrain candidate capacity; admission can rank legal candidates using utility/cost information and consume an estimated execution-cost budget; selected online-learning domains can make guarded changes inside existing safety and legality boundaries. The execution authority remains the scheduler.
+In the current private runtime, scheduling is more than FIFO dispatch. Runtime state and load constraints shape candidate capacity; legal candidates can be ranked with cost/utility information and admitted under bounded execution budgets; selected adaptive paths can make guarded adjustments inside existing safety and legality boundaries. Execution authority remains with the scheduler.
 
-This should **not** be read as a completed global learned orchestrator. Broader cross-DAG optimization, semantic scheduling policy, total task staggering, and the full interaction between offline/online learning and higher-level agent control remain outside the claims made by this public extraction. Observation can progressively change what becomes scheduler-visible work without bypassing scheduler ownership.
+The public extraction demonstrates bounded scheduling and adaptation behavior. It does not claim end-to-end global orchestration, nor does it publish the broader internal coordination and policy mechanisms used by the private system. Observation can progressively change what becomes scheduler-visible work without bypassing scheduler ownership.
 
 A simplified current execution chain is therefore closer to:
 
@@ -102,7 +86,7 @@ A simplified current execution chain is therefore closer to:
 existing legal runtime space
         -> load / capacity constraints
         -> candidate set
-        -> limited guarded adaptation
+        -> bounded adaptation
         -> cost-sensitive admission
         -> TaskScheduler
         -> perception execution
@@ -128,9 +112,9 @@ In the larger architecture, Observation is the current convergence point of the 
 
 Observation can construct scheduler-visible work when registered requirements can no longer be satisfied by current state, and semantic results can feed back into Observation as new evidence. It does not directly execute specialist models or replace the Global Scheduler.
 
-The architectural analogy is closer to a resource-constrained visual cortex than to a conventional inference API: maintain enough observation to keep the system situated, then pay for stronger semantic acquisition only when current information is insufficient. This is an architectural analogy, not a claim of biological modeling.
+The public material intentionally exposes this ownership boundary more clearly than the private mechanisms behind it.
 
-See [docs/observation.md](docs/observation.md) for the public mechanism, [docs/information-support-geometry.md](docs/information-support-geometry.md) for the public spatial-evidence abstraction, and [docs/research-boundary.md](docs/research-boundary.md) for what is intentionally not published.
+See [docs/observation.md](docs/observation.md) for the public mechanism, [docs/information-support-geometry.md](docs/information-support-geometry.md) for the public spatial-evidence abstraction, and [docs/research-boundary.md](docs/research-boundary.md) for the publication boundary.
 
 ## Repository contents
 
@@ -158,7 +142,7 @@ docs/evidence/               historical summaries + a frozen synthetic package s
 examples/                    small model-free demonstrations
 ```
 
-`dynamic_pipeline/` and `roi_app/` are not a publication of the full source application. They contain only the real metadata projection/commit/package/archive/replay support required for the public synthetic E2E path. Scheduler/task internals, model-specific Pose/OCR helpers, UI replay behavior, migration adapters, and unrelated source-application utilities are intentionally excluded.
+`dynamic_pipeline/` and `roi_app/` are not a publication of the full source application. They contain only the support required for the public synthetic E2E path. Unrelated application, model-integration, internal-control, UI, migration, and private research code is intentionally excluded.
 
 ## Lightweight verification
 
@@ -200,49 +184,33 @@ These benchmarks should be read together as examples of runtime specialization r
 
 Historical benchmark summaries are validation snapshots, not current performance guarantees. The synthetic E2E run is current model-free verification of the extracted metadata path and is explicitly not a real-model result; current provenance is carried by the commit-scoped Actions artifact.
 
-## Provenance
+## Development approach and provenance
 
-The runtime-control slice was curated from `film-64/Vision-product`, branch `yoloe26-smoke`, source snapshot:
+This public repository was curated from multiple stages of a larger private development history. It preserves selected runtime-control mechanisms, later Observation contracts, and sanitized validation summaries while keeping the complete application and research path private.
 
-`701333cbf1d019a662c18846f8a812ccf763a5e1`
+Development was agent-assisted and implementation-led. Agent tools accelerated the conversion of rough capability hypotheses into runnable probes; measurement, code inspection, and domain study were then used to decide what to keep, redefine, consolidate, or remove. New understanding repeatedly fed back into architecture and ownership decisions.
 
-The selected Observation contracts and later validation summaries were curated from subsequent `gate-tool-2` work. The private source repository contains substantially more application code, local assets, experiments, research notes and unfinished development than this showcase.
-
-Development was agent-assisted and implementation-led. A common loop was rough capability hypothesis -> high-bandwidth agent-assisted runnable implementation -> run/test/profile -> mismatch or new boundary -> requirement or ownership refinement -> repeat. New ideas were usually placed on a temporarily stable runtime substrate first; later development could narrow them, remove them, rename their ownership, or combine them more deeply once their shared requirements became visible.
-
-Agent assistance was not treated as a substitute for domain learning. In several phases, implementation breadth could grow faster than the developer's theoretical understanding of the system. Runnable artifacts then exposed concrete gaps — unfamiliar model behavior, scheduling constraints, evidence-lifetime problems, performance bottlenecks, or conflicting abstractions — that forced deeper study. That new knowledge changed the interpretation of the artifact and often changed the architecture itself.
-
-The development loop was therefore reciprocal rather than one-way automation:
+A representative loop was:
 
 ```text
-partial understanding
-        -> agent-assisted implementation probe
-        -> runnable system behavior
-        -> exposed knowledge boundary
-        -> deeper study / measurement
-        -> stronger system model
-        -> redefinition / consolidation
-        -> next implementation probe
+capability hypothesis
+        -> agent-assisted runnable probe
+        -> measurement / inspection
+        -> focused domain study
+        -> architecture refinement
+        -> consolidation
+        -> next probe
 ```
 
-The earlier runtime therefore accumulated real scope growth, migration residue and partially competing abstractions. Later Observation work did not erase that history; it became the current convergence point for questions that had repeatedly appeared across scheduling, spatial reuse, evidence lifetime, model specialization and persistent state. It also introduced more explicit separation between current design, historical exploration, validation evidence, and still-open concepts.
-
-The public repository presents converged slices and bounded evidence rather than reproducing every exploratory implementation or implying unaided authorship of every implementation detail.
+The public repository presents the converged, interview-relevant slices and bounded evidence from that process rather than the complete internal development graph.
 
 ## What is intentionally not included
 
-- model weights or generated model checkpoints;
-- private/original media and decoded frame caches;
-- face databases or identity material;
-- machine-local configuration and absolute paths;
-- the complete source application's scheduler/task/model/UI implementation;
-- the private static DAG editor and higher-level agent implementation;
-- the complete online/offline learning implementation and internal control policies;
-- the complete Observation / Attention research path, literature map and internal handoff documents;
-- unpublished OCR evidence-construction and activation strategy;
-- private model-specialization implementation details;
-- future Observation research roadmap;
-- original Git history;
+- private media, model weights, identity material, or machine-local assets;
+- the complete application and model-integration stack;
+- internal control, adaptation, and orchestration mechanisms beyond the published slices;
+- unpublished Observation/research mechanisms and model-specific optimization details;
+- internal development history, handoff material, and private experimental artifacts;
 - a claim that the complete historical system is clone-and-run reproducible.
 
 ## License
