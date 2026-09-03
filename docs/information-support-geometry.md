@@ -1,6 +1,6 @@
 # Information-Support Geometry
 
-This page exposes only the current public abstraction of Information-Support Geometry (ISG). It does not publish the mathematical construction, rule derivation, counterexample set, threshold-selection process, or research path that produced the model.
+This page exposes only the current public abstraction of Information-Support Geometry (ISG). It does not publish the internal mathematical construction, detailed acceptance logic, calibration process, or research path behind the model.
 
 ## Public role
 
@@ -30,11 +30,11 @@ A region is evidence about an area of the current view. It is not automatically 
 
 ISG can carry spatial supports that let Observation refer to evidence-backed parts of the view as maintainable information units.
 
-A support records that some spatial information has enough evidence to be represented and revisited. The public repository does not expose the mathematical rules used to construct or accept those supports.
+A support records that some spatial information has enough evidence to be represented and revisited. The public repository does not expose the internal construction or acceptance logic for those supports.
 
 ### Relations and coverage
 
-Supports may carry explicit spatial relations and coverage information so that Observation can reason about where evidence exists in the current view and how supported regions relate to one another.
+Supports may carry explicit spatial relations and coverage information so that Observation can describe where evidence exists in the current view and how supported regions relate to one another.
 
 These descriptors are evidence state, not semantic truth.
 
@@ -71,14 +71,6 @@ ISG does not execute models and does not create a second scheduling authority.
 
 ## Public scope
 
-This repository intentionally does not publish:
+The public material stops at the evidence abstraction above. Internal model construction, detailed geometry logic, calibration details, OCR-specific acquisition strategy, research notes and future research directions are outside this repository.
 
-- the mathematical construction of ISG;
-- topology or geometry acceptance rules;
-- the counterexample and rejection set used during model formation;
-- production thresholds or calibration procedure;
-- OCR-specific evidence-construction and activation strategy;
-- literature mapping, hypothesis evolution, or other research-path material;
-- future Observation research directions.
-
-The public goal is only to show the role ISG plays inside Observation and the kinds of spatial evidence it is designed to carry.
+The goal is only to show the role ISG plays inside Observation and the kinds of spatial evidence it is designed to carry.
