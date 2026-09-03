@@ -20,15 +20,68 @@ A later public Observation slice adds two small contracts:
 
 The original runtime was broader. At a high level it connected frame input, detector/pose/tracking perception, capability/artifact DAG work, scheduling/admission, specialist execution, and result/state feedback. The public Observation slice sits beside that runtime rather than replacing its scheduling authority.
 
+## System context
+
+The larger private project explores runtime infrastructure around continuous visual inference rather than a single model pipeline. Its architecture combines graph-defined perception requirements, reusable visual information/evidence, heterogeneous specialist models, runtime admission and scheduling, persistent state, and higher-level control contracts.
+
+Architecture maturity is intentionally uneven. The following diagram is system context, not a claim that every control loop is complete:
+
 ```text
-Frame source
-    -> perception / existing information
-    -> Observation evidence + information state
-    -> capability / artifact work
-    -> admission + scheduling + time semantics
-    -> specialist execution
-    -> result merge / persistent state
-    -> runtime metrics + health feedback
+                Agent / goal layer
+                 (future-facing)
+                       |
+                DAG requirements
+                       |
+                       v
+Frame ----------> OBSERVATION
+                  protected substrate
+                  information / evidence
+                  maintenance / compute
+                       |
+                scheduler-visible work
+                       |
+                       v
+              Runtime scheduling
+              +------------------+
+              | capacity / load  |
+              | cadence / stale  |
+              | cost estimates   |
+              | guarded learning |
+              | admission        |
+              +--------+---------+
+                       |
+                       v
+               Global TaskScheduler
+                       |
+          +------------+------------+
+          |            |            |
+         OCR          Pose         YOLOE
+       Identity      Clothing       ...
+          +------------+------------+
+                       |
+                 semantic results
+                       |
+          +------------+------------+
+          |                         |
+   Observation evidence       persistent state /
+                              metadata / memory
+```
+
+In the current private runtime, scheduling is more than FIFO dispatch. Existing runtime state and load control constrain candidate capacity; admission can rank legal candidates using utility/cost information and consume an estimated execution-cost budget; selected online-learning domains can make guarded changes inside existing safety and legality boundaries. The execution authority remains the scheduler.
+
+This should **not** be read as a completed global learned orchestrator. Broader cross-DAG optimization, semantic scheduling policy, and total task staggering are still architectural directions rather than claims of completed runtime behavior. Observation can progressively change what becomes scheduler-visible work without bypassing scheduler ownership.
+
+A simplified current execution chain is therefore closer to:
+
+```text
+existing legal runtime space
+        -> load / capacity constraints
+        -> candidate set
+        -> limited guarded adaptation
+        -> cost-sensitive admission
+        -> TaskScheduler
+        -> specialist execution
+        -> result / persistent state feedback
 ```
 
 Pose and YOLOE were separate detector capabilities in the development system. A routing policy could prefer one path for a task; that should not be read as one detector replacing the other architecturally.
@@ -46,6 +99,8 @@ Where is additional visual computation worth spending?
 When is previously acquired information no longer safe to reuse?
 ```
 
+In the larger architecture, Observation is becoming the place where reusable visual information, supporting evidence, maintenance rules, and protected internal computation are made explicit. It can construct scheduler-visible work when registered requirements can no longer be satisfied by current state, but it does not directly execute specialist models or replace the Global Scheduler.
+
 See [docs/observation.md](docs/observation.md) for the public mechanism, [docs/information-support-geometry.md](docs/information-support-geometry.md) for the public spatial-evidence abstraction, and [docs/research-boundary.md](docs/research-boundary.md) for what is intentionally not published.
 
 ## Repository contents
@@ -59,7 +114,6 @@ vision_runtime/
   observation/
     evidence.py              evidence provenance, versioning, freshness, history
     information_state.py     carried information linked to explicit evidence
-
 dynamic_pipeline/core/      narrow metadata evidence contracts and storage helpers
 roi_app/                     extracted async commit/package/replay path used by evidence
 scripts/generate_public_evidence.py
