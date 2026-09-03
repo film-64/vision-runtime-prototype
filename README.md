@@ -210,6 +210,21 @@ The selected Observation contracts and later validation summaries were curated f
 
 Development was agent-assisted and implementation-led. A common loop was rough capability hypothesis -> high-bandwidth agent-assisted runnable implementation -> run/test/profile -> mismatch or new boundary -> requirement or ownership refinement -> repeat. New ideas were usually placed on a temporarily stable runtime substrate first; later development could narrow them, remove them, rename their ownership, or combine them more deeply once their shared requirements became visible.
 
+Agent assistance was not treated as a substitute for domain learning. In several phases, implementation breadth could grow faster than the developer's theoretical understanding of the system. Runnable artifacts then exposed concrete gaps — unfamiliar model behavior, scheduling constraints, evidence-lifetime problems, performance bottlenecks, or conflicting abstractions — that forced deeper study. That new knowledge changed the interpretation of the artifact and often changed the architecture itself.
+
+The development loop was therefore reciprocal rather than one-way automation:
+
+```text
+partial understanding
+        -> agent-assisted implementation probe
+        -> runnable system behavior
+        -> exposed knowledge boundary
+        -> deeper study / measurement
+        -> stronger system model
+        -> redefinition / consolidation
+        -> next implementation probe
+```
+
 The earlier runtime therefore accumulated real scope growth, migration residue and partially competing abstractions. Later Observation work did not erase that history; it became the current convergence point for questions that had repeatedly appeared across scheduling, spatial reuse, evidence lifetime, model specialization and persistent state. It also introduced more explicit separation between current design, historical exploration, validation evidence, and still-open concepts.
 
 The public repository presents converged slices and bounded evidence rather than reproducing every exploratory implementation or implying unaided authorship of every implementation detail.
