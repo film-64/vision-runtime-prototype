@@ -1,74 +1,84 @@
 # Information-Support Geometry
 
-This page exposes a limited engineering boundary from the later Observation work. It does not publish the research path, literature mapping, threshold-search process or future acquisition policy.
+This page exposes only the current public abstraction of Information-Support Geometry (ISG). It does not publish the mathematical construction, rule derivation, counterexample set, threshold-selection process, or research path that produced the model.
 
-The problem starts with a common mistake: treating detector rectangles as if they were already a stable description of the world.
+## Public role
 
-The public model keeps four things separate:
+ISG is an intermediate spatial-evidence representation used by Observation.
 
-```text
-support topology
-    !=
-geometry dimension
-    !=
-spatial-partition occupancy
-    !=
-evidence maturity
-```
-
-## What that separation prevents
-
-A few counterexamples are enough to show why the separation matters:
-
-- one large rectangle can span several viewport partitions while remaining one support;
-- several rectangles inside one partition can still represent multiple independent supports;
-- dense detector output does not by itself prove stable two-dimensional structure;
-- three supports do not automatically form a well-conditioned triangle;
-- a change from provisional detector candidates to recognition-confirmed candidates is evidence maturation, not automatically physical scene motion.
-
-The intended construction is therefore closer to:
+Its job is not to identify the world by itself. It gives the runtime a structured way to carry spatial evidence forward so that later Observation decisions can ask:
 
 ```text
-real observed rectangles
-        |
-        v
-typed spatial measurements
-        |
-        v
-support hypotheses + weak relations + ambiguity
-        |
-        v
-local geometry descriptors
-        |
-        v
-spatial-view / global-geometry candidates
+what spatial information is currently supported?
+where does that support apply?
+which evidence produced it?
+is that evidence still valid enough to reuse?
+is stronger observation needed?
 ```
 
-A support hypothesis is not semantic truth. A geometry candidate is not automatically accepted stable geometry.
+## Public evidence abstraction
 
-## Measurements before conclusions
+The public description keeps only a few concepts.
 
-The source implementation records measurements such as rectangle size and area, center displacement, exact boundary gap, overlap, containment, size ratios, local scatter and support extent before stronger interpretation is attempted.
+### Observed regions
 
-Two rules are intentionally preserved in the public description:
+A region is a spatial observation tied to a source/frame context and explicit provenance. It may originate from a detector, a perception stage, or another visual measurement.
 
-1. Center distance alone is not a sufficient proximity fact; rectangle boundaries and footprint matter.
-2. Partition occupancy is descriptive. It must not manufacture additional independent supports or fake geometry vertices.
+A region is evidence about an area of the current view. It is not automatically a semantic object or permanent scene entity.
 
-Synthetic cases are useful for rejecting broken rules, but they do not establish production thresholds for real OCR or detector distributions.
+### Information supports
 
-## Evidence boundary
+ISG can carry spatial supports that let Observation refer to evidence-backed parts of the view as maintainable information units.
 
-The same geometric constructor can be applied to different evidence stages. For example, provisional perception rectangles and later confirmed rectangles may produce different geometry because the evidence matured.
+A support records that some spatial information has enough evidence to be represented and revisited. The public repository does not expose the mathematical rules used to construct or accept those supports.
 
-That geometry change must not be confused with camera motion or scene evolution. Temporal spatial maintenance requires real image measurements or explicit transforms; derived box centers or partition labels are not substitutes for pixel correspondences.
+### Relations and coverage
+
+Supports may carry explicit spatial relations and coverage information so that Observation can reason about where evidence exists in the current view and how supported regions relate to one another.
+
+These descriptors are evidence state, not semantic truth.
+
+### Evidence maturity and validity
+
+Spatial information may be provisional, strengthened by later evidence, reused while still valid, or invalidated when its supporting evidence is no longer sufficient.
+
+A change in evidence maturity is not automatically a physical change in the scene. Provenance, freshness and uncertainty remain part of the state.
+
+## Runtime position
+
+The public relationship is:
+
+```text
+visual measurements / model outputs
+        |
+        v
+spatial evidence
+        |
+        v
+ISG support + relation + validity state
+        |
+        v
+carried Information
+        |
+        v
+reuse / validate / request stronger observation
+        |
+        v
+existing runtime admission + scheduler
+```
+
+ISG does not execute models and does not create a second scheduling authority.
 
 ## Public scope
 
-This repository publishes the invariants above because they explain why Observation cannot treat model output as world truth. It intentionally omits:
+This repository intentionally does not publish:
 
-- production acceptance thresholds;
-- full topology and geometry-construction implementation;
-- OCR-specific evidence acquisition strategy;
-- research notes, cross-domain references and hypothesis history;
-- future Observation roadmap.
+- the mathematical construction of ISG;
+- topology or geometry acceptance rules;
+- the counterexample and rejection set used during model formation;
+- production thresholds or calibration procedure;
+- OCR-specific evidence-construction and activation strategy;
+- literature mapping, hypothesis evolution, or other research-path material;
+- future Observation research directions.
+
+The public goal is only to show the role ISG plays inside Observation and the kinds of spatial evidence it is designed to carry.
