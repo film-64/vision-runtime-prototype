@@ -87,7 +87,7 @@ This is an explanation of staged evidence acquisition, not a claim that the repo
 
 Observation also needs a way to carry spatial evidence without treating every model output as permanent scene truth. The public ISG description therefore stays at the evidence level: observed regions, evidence-backed supports, spatial relations and coverage, provenance, freshness, uncertainty, and evidence maturity.
 
-The mathematical construction of those supports, the rejection/counterexample set used while forming the model, and the detailed acceptance rules are intentionally not published. See [information-support geometry](information-support-geometry.md) for the limited public abstraction.
+The internal mathematical construction and detailed acceptance logic are intentionally outside the public repository. See [information-support geometry](information-support-geometry.md) for the limited public abstraction.
 
 ## Why text becomes a harder example
 
