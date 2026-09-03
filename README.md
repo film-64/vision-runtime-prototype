@@ -46,7 +46,7 @@ Where is additional visual computation worth spending?
 When is previously acquired information no longer safe to reuse?
 ```
 
-See [docs/observation.md](docs/observation.md) for the public mechanism, [docs/information-support-geometry.md](docs/information-support-geometry.md) for selected spatial guardrails, and [docs/research-boundary.md](docs/research-boundary.md) for what is intentionally not published.
+See [docs/observation.md](docs/observation.md) for the public mechanism, [docs/information-support-geometry.md](docs/information-support-geometry.md) for the public spatial-evidence abstraction, and [docs/research-boundary.md](docs/research-boundary.md) for what is intentionally not published.
 
 ## Repository contents
 
