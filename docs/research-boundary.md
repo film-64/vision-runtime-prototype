@@ -8,6 +8,7 @@ The following are intentionally outside the public scope:
 
 - literature-mapping and cross-domain reference trails;
 - the sequence in which hypotheses were proposed, rejected or reformulated;
+- mathematical model-construction notes, rejected formulations and counterexample sets;
 - internal research notes and handoff documents;
 - prompt history or agent reasoning traces;
 - unpublished OCR evidence-construction and activation policy;
@@ -21,13 +22,14 @@ public
   current mechanism
   explicit runtime boundary
   selected code contracts
-  synthetic guardrails
+  abstract evidence model
   bounded measured evidence
   known limitations
 
 not public
   research route
   literature map
+  mathematical construction path
   hypothesis evolution
   future acquisition strategy
   internal roadmap
