@@ -54,11 +54,11 @@ Observation maintenance
         +--> request stronger observation when needed
 ```
 
-The measurements help Observation reason about the current spatial support of information. They do not execute models or own scheduling.
+These measurements provide inputs to Observation maintenance checks about current spatial support. They do not execute models, determine semantic truth, or own scheduling.
 
 ## Current public boundary
 
-The public repository does not publish the full private implementation of these statistics or the source project's detailed grouping/acceptance logic. The public code only exposes the narrower Evidence and Information-state contracts used to demonstrate provenance, freshness, historical visibility, and explicit evidence linkage.
+The public repository does not publish the full private implementation of these statistics or the source project's detailed grouping/acceptance logic. The public code only exposes the narrower Evidence and Information-state contracts for provenance, freshness, historical visibility, and explicit evidence linkage.
 
 Existing private implementation names may still contain `InformationGeometry` or similar historical terminology. Those names should be read as legacy implementation names, not as a claim that the project implements the academic field of Information Geometry.
 
