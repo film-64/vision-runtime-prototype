@@ -18,6 +18,8 @@ class ObservationContractError(ValueError):
 
 
 class EvidenceScope(str, Enum):
+    """Labels for evidence records, not claims that a producer or semantic truth exists."""
+
     SCENE_MOTION = "scene.motion"
     SCENE_STRUCTURE = "scene.structure"
     INFORMATION_PRIOR = "scene.information_prior"
@@ -81,10 +83,10 @@ class EvidenceRef:
 
 @dataclass(frozen=True)
 class Evidence:
-    """One immutable evidence fact.
+    """One immutable evidence record.
 
     `valid_until_frame_id` is optional. When absent, the producer has not placed
-    a frame-based expiry on the fact; callers may still invalidate it explicitly.
+    a frame-based expiry on the record; callers may still invalidate it explicitly.
     """
 
     evidence_id: str
@@ -141,11 +143,11 @@ class EvidenceInvalidation:
 
 
 class EvidenceStore:
-    """Append-only evidence facts with source/generation-scoped identity.
+    """Append-only evidence records with source/generation-scoped identity.
 
     Material changes publish a new version. Historical queries cannot observe a
     version produced by a later frame. Invalidation is explicit and separate
-    from the evidence fact itself.
+    from the evidence record itself.
     """
 
     def __init__(self) -> None:
