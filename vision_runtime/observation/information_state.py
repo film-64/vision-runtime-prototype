@@ -46,6 +46,8 @@ class InformationSupport:
 
     @property
     def fully_supported(self) -> bool:
+        """True when all declared evidence refs are fresh, not a semantic-correctness claim."""
+
         return bool(self.record.evidence_refs) and not self.stale_refs
 
 
