@@ -52,7 +52,7 @@ cheap motion / CV evidence
 continuous region selection
       |
       v
-purchase person-detector computation only on that region
+person-detector computation on that region
 ```
 
-It supports the direction "cheap evidence before stronger inference" on the recorded window. It does not define a production selection policy, and it does not demonstrate posture semantics because the keypoint branch was disabled.
+In this recorded window, motion-based region selection reduced the amount of person-detector computation while retaining the same model-derived full-frame reference boxes. The result does not define a production selection policy, and it does not demonstrate posture semantics because the keypoint branch was disabled.
