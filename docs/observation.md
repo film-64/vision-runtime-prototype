@@ -1,98 +1,91 @@
 # Observation
 
-This repository exposes a small, testable slice of the later Observation work from the source system. It publishes the resulting runtime ideas and selected validation evidence, not the research path that produced them.
+`Observation` is the project name for a shared runtime state/contract layer around visual information. It is an engineering abstraction used to answer a practical question:
 
-The operational question is simple:
+> Given what the system already has, can the current information still be reused, does it need validation, or should another visual capability run?
 
-> Given what the system already knows, is the current evidence still sufficient, or is stronger observation worth paying for?
-
-Two practical forms of that question are used in this showcase:
-
-```text
-Where is additional visual computation worth spending?
-When is previously acquired information no longer safe to reuse?
-```
+It is not a model, not a second scheduler, and not a claim of general scene understanding.
 
 ## Runtime position
 
-Observation is not a second scheduler and does not own model execution.
+A simplified flow is:
 
 ```text
-Perception / existing information
+perception result / existing information
         |
         v
 Observation state
-  information + evidence
-  freshness / uncertainty
-  spatial support
+  information + evidence refs
+  freshness / validity
+  uncertainty / spatial support
         |
         v
-capability request / task shaping
+reuse / validate / request more work
         |
         v
 existing runtime control
   admission + scheduling + deadlines
         |
         v
-specialist execution
+specialist capability
         |
         v
-new evidence / updated information
+new result / new evidence
 ```
 
-The public Observation package therefore owns only evidence and carried-information contracts. Existing runtime-control code continues to own admission, scheduling and execution decisions.
+The public `vision_runtime.observation` package is intentionally smaller than this full source-project flow. It currently exposes only two narrow contracts:
 
-## Evidence before stronger inference
+- versioned evidence with source/generation provenance, freshness, invalidation, and historical visibility;
+- carried information that explicitly cites the evidence supporting it.
 
-The runtime does not need every available capability to run at full spatial scope on every frame. A cheaper measurement can first establish whether stronger work is justified.
+The public package does not implement the complete private maintenance logic or model-selection policy.
 
-One historical feasibility test used short frame history plus camera-motion-compensated residual-flow evidence to select a continuous region before running the person branch of a local Pose model. Across the bounded 14 measured frames, the regional path retained all 48 full-frame reference person boxes while purchasing 61.93% of the active area on average. Complete-path p50 fell from 217.1164 ms to 131.8110 ms, a 39.3% reduction in that window.
+## Why this exists
 
-The keypoint head was disabled in this benchmark. The result supports selective detector computation; it is not a posture-accuracy result. See [motion-selected region person detection](evidence/motion-selected-region-person.md).
-
-## Maintaining information over time
-
-The second case asks whether already acquired spatial information must be rebuilt on every source frame.
-
-A separate 96-frame replay compared eager per-frame spatial processing with an event-driven path that reused state between sparse validation opportunities and escalated only when cheaper evidence failed. Measured compute fell from 1961.27 ms to 304.95 ms in that replay, with mean source-frame compute falling from 20.43 ms to 3.18 ms. The recorded compute reduction was 84.45%.
-
-This result supports lazy temporal maintenance on that sample. It does not prove that every selected region is semantically valuable, and it excludes decode, scheduler contention, memory pressure and target-device transforms. See [temporal spatial reuse](evidence/temporal-spatial-reuse.md).
-
-## Public evidence ladder
-
-The public material uses the following explanatory ladder:
+Continuous visual processing can waste compute if every capability reruns at full scope on every frame. The source project therefore experiments with separating three questions:
 
 ```text
-known information
-      |
-      v
-reuse while current evidence remains sufficient
-      |
-      v
-cheap structural / temporal validation
-      |
-      v
-stronger spatial recovery when needed
-      |
-      v
-regional detector or specialist work when justified
-      |
-      v
-new evidence updates carried information
+what information is already available?
+what evidence currently supports it?
+what additional computation is actually needed now?
 ```
 
-This is an explanation of staged evidence acquisition, not a claim that the repository contains a universal cost optimizer.
+The goal is operational reuse and bounded recomputation, not a universal optimizer.
 
-## Information-Support Geometry
+## Example: selecting a smaller detector region
 
-Observation also needs a way to carry spatial evidence without treating every model output as permanent scene truth. The public ISG description therefore stays at the evidence level: observed regions, evidence-backed supports, spatial relations and coverage, provenance, freshness, uncertainty, and evidence maturity.
+One historical feasibility test used short frame history plus camera-motion-compensated residual-flow evidence to select a continuous region before running the person branch of a local Pose model.
 
-The internal mathematical construction and detailed acceptance logic are intentionally outside the public repository. See [information-support geometry](information-support-geometry.md) for the limited public abstraction.
+Across the bounded 14 measured frames, the regional path retained all 48 full-frame reference person boxes while processing 61.93% of the active area on average. Complete-path p50 fell from 217.1164 ms to 131.8110 ms, a 39.3% reduction in that window.
 
-## Why text becomes a harder example
+The keypoint head was disabled. This result supports selective person-detector computation on that sample; it is not a posture-accuracy result or a production threshold. See [motion-selected region person detection](evidence/motion-selected-region-person.md).
 
-Text is spatially explicit and can carry dense semantic information. Once text has been acquired, however, repeating recognition on every frame is not automatically justified.
+## Example: reusing spatial state between frames
 
-That raises a harder Observation question: what evidence is sufficient to keep previously acquired text information usable, and when should stronger text observation be purchased again?
+A separate 96-frame replay compared eager per-frame spatial processing with an event-driven path that reused state between sparse validation opportunities and rebuilt only when cheaper evidence failed.
 
-Detailed text-evidence construction, OCR activation policy, hypothesis evolution and the associated research path are intentionally outside this public repository. See [research boundary](research-boundary.md).
+Measured compute fell from 1961.27 ms to 304.95 ms in that replay, with mean source-frame compute falling from 20.43 ms to 3.18 ms. The recorded compute reduction was 84.45%.
+
+This supports lazy temporal maintenance on that sample. It does not prove semantic quality and excludes decode, scheduler contention, memory pressure, and target-device transforms. See [temporal spatial reuse](evidence/temporal-spatial-reuse.md).
+
+## Spatial support statistics
+
+Some source-project work measures the spatial distribution of detector/probe returns: gaps, overlap, containment, coverage, scatter, density, principal direction, and related support descriptors.
+
+These measurements are engineering statistics over machine-observed regions. They are not academic Information Geometry and should not be read as human-perceived object geometry or a persistent world model.
+
+See [spatial support statistics](spatial-support-statistics.md) for the public terminology and boundary.
+
+## Text is only one capability example
+
+OCR-related experiments are present because text provides a useful case where region discovery and semantic recognition can be separated.
+
+A detector-side result can first provide candidate regions. Recognition is a later semantic operation. The candidate regions are observations, not proof that the system has identified a complete object or understood the scene.
+
+The same Observation contracts are intended to remain usable with other capabilities such as Pose, YOLOE, temporal measurements, and future detector/probe paths.
+
+## Public boundary
+
+The public repository shows selected contracts, tests, synthetic execution, and bounded historical measurements. It does not reproduce the full private application or its unfinished/experimental policies.
+
+See [publication boundary](publication-boundary.md) for the exact scope.
