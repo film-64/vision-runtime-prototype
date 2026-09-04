@@ -1,8 +1,10 @@
 # vision-runtime-prototype
 
+[中文说明](README.zh-CN.md) | English
+
 A curated, evidence-backed extraction of runtime-control and selected Observation mechanisms from a larger private visual-perception development repository.
 
-This repository is a job-application showcase. It is intentionally narrower than the original system: it demonstrates runtime control behavior, architecture boundaries, selected Observation contracts, tests, and bounded execution evidence without redistributing private media, model weights, identity data, or the complete research history.
+This repository is a job-application showcase. It is intentionally narrower than the original system: it demonstrates runtime control behavior, architecture boundaries, selected Observation contracts, tests, and bounded execution evidence without redistributing private media, model weights, identity data, or the complete development history.
 
 ## Scope
 
@@ -148,7 +150,7 @@ docs/evidence/               historical summaries + a frozen synthetic package s
 examples/                    small model-free demonstrations
 ```
 
-`dynamic_pipeline/` and `roi_app/` are not a publication of the full source application. They contain only the support required for the public synthetic E2E path. Unrelated application, model-integration, internal-control, UI, migration, and private research code is intentionally excluded.
+`dynamic_pipeline/` and `roi_app/` are not a publication of the full source application. They contain only the support required for the public synthetic E2E path. Unrelated application, model-integration, internal-control, UI, migration, and private development code is intentionally excluded.
 
 ## Lightweight verification
 
@@ -192,30 +194,35 @@ Historical benchmark summaries are validation snapshots, not current performance
 
 ## Development approach and provenance
 
-This public repository was curated from multiple stages of a larger private development history. It preserves selected runtime-control mechanisms, later Observation contracts, and sanitized validation summaries while keeping the complete application and research path private.
+This public repository was curated from multiple stages of a larger private development history. It preserves selected runtime-control mechanisms, later Observation contracts, and sanitized validation summaries while keeping the complete application and internal development path private.
 
-Development was agent-assisted and implementation-led. Agent tools accelerated the conversion of rough capability hypotheses into runnable probes; measurement, code inspection, and domain study were then used to decide what to keep, redefine, consolidate, or remove. New understanding repeatedly fed back into architecture and ownership decisions.
+Implementation is heavily driven by AI assistants and coding agents. My role is primarily to control the forward direction of the project rather than the implementation process itself.
 
-A representative loop was:
+A representative loop is:
 
 ```text
-capability hypothesis
-        -> agent-assisted runnable probe
-        -> measurement / inspection
-        -> focused domain study
-        -> architecture refinement
-        -> consolidation
-        -> next probe
+direction / judgment
+        -> discussion, decomposition and clarification with AI assistants
+        -> coding-agent implementation into a runnable system
+        -> inspect actual behavior, results and measurements
+        -> judgment / validation
+        -> update the system model from new results and constraints
+        -> adjust structure, boundaries or priorities
+        -> next iteration
 ```
 
-The public repository presents the converged, interview-relevant slices and bounded evidence from that process rather than the complete internal development graph.
+Many implementation details, maintenance tasks, tests and documentation are produced by agents. Some useful structures also emerge during implementation rather than being specified in advance. I do not reject a result simply because it originated from an agent; if its behavior is sound and supported by execution, tests or measurement, it can become part of the next iteration.
+
+My main responsibility is to decide whether the current result is the intended one, whether observed behavior is consistent with the current system model, which outcomes should be retained, where unexplained deviations remain, and what direction the next iteration should take.
+
+The project therefore does not follow a process where a complete theory is written first and then implemented from a fixed design. Its structure converges through repeated cycles of direction, agent materialization, observed outcomes, validation, model updates and boundary changes.
 
 ## What is intentionally not included
 
 - private media, model weights, identity material, or machine-local assets;
 - the complete application and model-integration stack;
 - internal control, adaptation, and orchestration mechanisms beyond the published slices;
-- unpublished Observation/research mechanisms and model-specific optimization details;
+- unpublished Observation mechanisms and model-specific optimization details;
 - internal development history, handoff material, and private experimental artifacts;
 - a claim that the complete historical system is clone-and-run reproducible.
 
