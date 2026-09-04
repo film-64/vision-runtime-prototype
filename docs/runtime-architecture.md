@@ -2,21 +2,21 @@
 
 ## Purpose
 
-This document describes the stable runtime boundary represented by the `yoloe26-smoke` baseline and the limited public Observation slice extracted from later work. It does not document the complete Observation / Attention research path and it does not claim that this showcase contains the complete original application.
+This document describes the runtime boundary represented by the `yoloe26-smoke` baseline plus the small public Observation contract slice. It is a showcase of selected engineering mechanisms, not a complete copy of the private application.
 
 ## Original runtime shape
 
-The development system connected perception work to a managed execution runtime rather than treating every model as an unconditional per-frame call.
+The development system connected perception work to a managed execution runtime instead of treating every model as an unconditional per-frame call.
 
 ```text
 Frame source
     |
     v
-Main perception
-  detector / pose / tracking
+Perception capabilities
+  detector / pose / tracking / specialists
     |
     v
-Capability and artifact work
+Task and artifact requirements
     |
     v
 Runtime control
@@ -26,7 +26,10 @@ Runtime control
   queue / latency metrics
     |
     v
-Specialist execution
+TaskScheduler
+    |
+    v
+Capability execution
     |
     v
 Result merge + persistent state
@@ -36,50 +39,48 @@ Result merge + persistent state
                                          +--> next scheduling decision
 ```
 
-The source runtime used a single scheduling authority for work admission/submission. Control policies could change effective runtime frequency or priority, but were not intended to create a second hidden execution path.
+The source runtime used one scheduling authority for work admission/submission. Control policies could change effective frequency or priority, but did not create a second hidden execution path.
 
 ## Observation boundary
 
-The later Observation work asks what is already known, why it is currently believed, whether that evidence is still usable, and whether stronger observation is justified.
-
-Its public placement is deliberately upstream of the existing runtime authority:
+The later Observation work adds explicit state around already-acquired information and its supporting evidence.
 
 ```text
-perception / existing information
+perception result / existing information
         |
         v
 Observation
   evidence provenance
-  freshness / uncertainty
+  freshness / validity
   carried information
-  spatial-support proposal
+  spatial support state
         |
         v
-capability request / task shaping
+reuse / validate / request more work
         |
         v
 existing admission + scheduler
         |
         v
-specialist execution
+capability execution
         |
         v
 new evidence / updated information
 ```
 
-Observation may construct evidence or propose what is worth observing. It does not directly submit semantic tasks, create a second queue, or take ownership of admission and scheduling.
+Observation does not execute specialist models and does not own scheduler admission. It maintains state that can affect what work becomes necessary.
 
-The public `vision_runtime.observation` package keeps only evidence and information-state contracts. The larger source system contains additional experimental mechanisms that are intentionally not reproduced here.
+The public `vision_runtime.observation` package currently exposes only evidence and information-state contracts. The larger private source contains additional experimental maintenance and task-construction logic that is not reproduced here.
 
 ## Detector boundary
 
-Pose and YOLOE should be understood as separate detector capabilities. They had different input/use-case paths and could coexist in the runtime. A particular route could prefer Pose for full-frame person/keypoint work while YOLOE remained available for full-frame or task/object-region work.
+Pose and YOLOE are separate detector capabilities. They have different input/use-case paths and can coexist in the runtime. A route may prefer Pose for one task and YOLOE for another; that should not be summarized as one detector replacing the other architecturally.
 
-Therefore this architecture should not be summarized as "Pose replaced YOLOE."
+OCR recognition and other specialist capabilities remain separate from detector/probe-side region acquisition.
 
 ## What this showcase extracts
 
-The public package keeps four small, model-free runtime-control parts plus a small Observation contract slice.
+The public package keeps four small model-free runtime-control parts plus a small Observation contract slice.
 
 ### Metrics
 
@@ -101,7 +102,7 @@ The public package keeps four small, model-free runtime-control parts plus a sma
 
 ### Runtime health
 
-`vision_runtime.runtime_health.RuntimeHealthMonitor` derives `ok`, `watch`, `degraded`, or `critical` state from latency tails, queue pressure, stale work and scene volatility. Hysteresis prevents immediate recovery from a short clear period.
+`vision_runtime.runtime_health.RuntimeHealthMonitor` derives `ok`, `watch`, `degraded`, or `critical` state from latency tails, queue pressure, stale work and scene volatility. Hysteresis prevents immediate recovery after a short clear period.
 
 ### Observation evidence
 
@@ -111,8 +112,14 @@ The public package keeps four small, model-free runtime-control parts plus a sma
 
 `vision_runtime.observation.InformationState` keeps carried information linked to the exact evidence refs declared to support it. It reports whether those refs remain fresh at a requested frame but does not decide which model should run next.
 
+## Spatial support terminology
+
+Some private source work measures detector/probe outputs using spatial statistics such as gaps, overlap, coverage, scatter, density and support relations. In this showcase that work is described as **spatial support statistics**.
+
+It should not be read as academic Information Geometry or as a claim that the system has reconstructed human-perceived object geometry. See [spatial support statistics](spatial-support-statistics.md).
+
 ## Public verification boundary
 
 The tests in this repository use synthetic values only. They demonstrate the behavior of the extracted control and Observation contracts without requiring model weights, videos, OCR assets, Redis, Qt, GPU support, or the original application configuration.
 
-Historical model execution and later bounded Observation experiments are documented separately under `docs/evidence/`. Those reports are evidence that the larger development system was exercised and measured; they are not bundled as a public reproduction environment.
+Historical model execution and bounded source-project experiments are documented separately under `docs/evidence/`. Those reports show that specific paths were exercised and measured under stated conditions; they are not a public reproduction environment for the full private system.
