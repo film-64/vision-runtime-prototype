@@ -62,10 +62,4 @@ The public repository does not publish the full private implementation of these 
 
 Existing private implementation names may still contain `InformationGeometry` or similar historical terminology. Those names should be read as legacy implementation names, not as a claim that the project implements the academic field of Information Geometry.
 
-## About higher-order geometry
-
-This showcase does not claim a separate higher-order geometry subsystem.
-
-Such an abstraction would only be justified if it produced additional operational value beyond re-describing detector outputs—for example, stable cross-frame structure, useful transform relationships, prediction of missing support, or better validation/reacquisition decisions.
-
-Until then, the public description stays with the narrower engineering term: **spatial support statistics**.
+The current source work described here stops at spatial measurements, support relations, and derived support-state summaries. This showcase does not claim a separate higher-order geometry subsystem.
