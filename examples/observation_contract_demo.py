@@ -39,8 +39,8 @@ def main() -> None:
     for frame_id in (11, 13, 14):
         now = FrameRef("camera-a", frame_id=frame_id, generation=1)
         support = information_state.support_at(region, at_frame=now)
-        action = "reuse" if support.fully_supported else "stronger observation required"
-        print(f"frame={frame_id}: {action}")
+        status = "support fresh" if support.fully_supported else "support stale"
+        print(f"frame={frame_id}: {status}")
 
 
 if __name__ == "__main__":
